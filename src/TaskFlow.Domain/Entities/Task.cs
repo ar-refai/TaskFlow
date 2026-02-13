@@ -12,7 +12,7 @@ namespace TaskFlow.Domain.Entities
 {
     public class Task : Entity<TaskId>
     {
-        // backing fields
+        // Backing fields
         private string _title = string.Empty;
         private string? _description;
         private TaskStatus _taskStatus;
@@ -22,7 +22,7 @@ namespace TaskFlow.Domain.Entities
         private readonly List<Tag> _tags = new();
         private readonly List<Comment> _comments = new();
 
-        // public read-only properties
+        // Public read-only properties
         public override TaskId Id { get; protected set; }
         public ProjectId ProjectId { get; protected set;}
 
@@ -57,7 +57,7 @@ namespace TaskFlow.Domain.Entities
             _taskStatus = TaskStatus.ToDo; // New tasks are always a TODO
         }
 
-        // Behavioral methods (ChangeTitle(), ChangeDescription, ChangePriority(), SetDateRange(), ClearDateRange(), Assign(), UnAssign(), ChangeStatus(), Complete(), AddTag(), RemoveTag(), AddComment() )
+        // Behavioral methods 
 
         public void ChangeTitle(string newTitle)
         {
