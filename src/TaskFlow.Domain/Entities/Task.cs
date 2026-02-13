@@ -28,7 +28,7 @@ namespace TaskFlow.Domain.Entities
 
 
         public string Title => _title;
-        public string? Description => Description;
+        public string? Description => _description;
         public TaskStatus TaskStatus => _taskStatus;
         public Priority Priority => _priority;
         public DateRange? DateRange => _dateRange;
@@ -45,13 +45,13 @@ namespace TaskFlow.Domain.Entities
         public Task() { }
 
         // Domain Constructor
-        public Task(TaskId id, string title, Priority priority)
+        public Task(TaskId id, string title, Priority priority,ProjectId projectId)
         {
             if (string.IsNullOrEmpty(title)) throw new ArgumentException("Task title cannot be empty", nameof(title));
             if(title.Length > 200) throw new ArgumentException("Task title cannot exceed 200 characters",nameof(title));
 
             Id = TaskId.New();
-            ProjectId = ProjectId;
+            ProjectId = projectId;
             _title = title;
             _priority = priority;
             _taskStatus = TaskStatus.ToDo; // New tasks are always a TODO
