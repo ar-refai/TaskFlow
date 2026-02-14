@@ -45,7 +45,7 @@ namespace TaskFlow.Domain.Entities
         public Task() { }
 
         // Domain Constructor
-        public Task(TaskId id, string title, Priority priority,ProjectId projectId)
+        public Task(string title, Priority priority,ProjectId projectId)
         {
             if (string.IsNullOrEmpty(title)) throw new ArgumentException("Task title cannot be empty", nameof(title));
             if(title.Length > 200) throw new ArgumentException("Task title cannot exceed 200 characters",nameof(title));
