@@ -8,7 +8,7 @@ using TaskFlow.Domain.Entities;
 using TaskFlow.Domain.Repositories;
 using TaskFlow.Domain.ValueObjects;
 
-namespace TaskFlow.Infrastructure.Persistence
+namespace TaskFlow.Infrastructure.Persistence.Repositories
 {
     public class ProjectRepository : IProjectRepository
     {
