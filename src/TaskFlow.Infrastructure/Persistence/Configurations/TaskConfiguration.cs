@@ -50,7 +50,7 @@ namespace TaskFlow.Infrastructure.Persistence.Configurations
 
             // Status (enum to string)
             builder.Property(t => t.TaskStatus)
-                .HasField("_status")
+                .HasField("_taskStatus")
                 .UsePropertyAccessMode(PropertyAccessMode.Field)
                 .HasConversion<string>()
                 .HasMaxLength(20)
