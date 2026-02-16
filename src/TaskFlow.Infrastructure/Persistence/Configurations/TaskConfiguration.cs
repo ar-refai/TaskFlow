@@ -73,30 +73,29 @@ namespace TaskFlow.Infrastructure.Persistence.Configurations
                     value => value.HasValue ? new TeamMemberId(value.Value) : null);
 
             // DateRange (owned entity)
+            // DateRange (owned entity - struct version)
             builder.OwnsOne(t => t.DateRange, dateRange =>
             {
-                dateRange.Property(d => d.StartDate)
-                    .HasColumnName("StartDate")
-                    .IsRequired(false); // Nullable because DateRange itself is nullable
+                dateRange.Property<DateTime>("StartDate")
+                    .HasColumnName("StartDate");
 
-                dateRange.Property(d => d.DueDate)
-                    .HasColumnName("DueDate")
-                    .IsRequired(false);
+                dateRange.Property<DateTime>("DueDate")
+                    .HasColumnName("DueDate");
             });
-
             // Tags (many-to-many with value objects)
-            builder.OwnsMany(t => t.Tags, tag =>
+            // Tags (many-to-many with value objects)
+            builder.OwnsMany(t => t.Tags, tagsBuilder =>
             {
-                tag.ToTable("TaskTags");
+                tagsBuilder.ToTable("TaskTags");
 
-                tag.WithOwner().HasForeignKey("TaskId");
+                tagsBuilder.Property<Guid>("TaskEntityId");
 
-                tag.Property(t => t.Value)
+                tagsBuilder.Property(t => t.Value)
                     .HasColumnName("TagValue")
                     .HasMaxLength(30)
                     .IsRequired();
 
-                tag.HasKey("TaskId", "Value"); // Composite key
+                tagsBuilder.HasKey("TaskEntityId", "Value");
             });
 
             // Comments (one-to-many)

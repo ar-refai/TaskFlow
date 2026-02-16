@@ -22,8 +22,8 @@ namespace TaskFlow.Application.Tasks
                 DateRange = task.DateRange is not null?
                 new DateRangeDto
                 {
-                    StartDate =  task.DateRange.Value.StartDate,
-                    DueDate = task.DateRange.Value.DueDate
+                    StartDate =  task.DateRange.StartDate,
+                    DueDate = task.DateRange.DueDate
                 } : null,
                 AssignedTo = task.AssignedTo?.Value,
                 Tags = task.Tags.Select(t => t.Value).ToList(),
