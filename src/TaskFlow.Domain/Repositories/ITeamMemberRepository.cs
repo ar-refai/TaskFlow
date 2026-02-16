@@ -10,9 +10,9 @@ namespace TaskFlow.Domain.Repositories
 {
     public interface ITeamMemberRepository
     {
-        Task<TeamMember?> GetByIdAsync(TeamMember teamMember, CancellationToken cancellationToken = default);
-        Task<TeamMember?> GetByEmail(Email email , CancellationToken cancellationToken = default);
-        Task<List<TeamMember>> GetAll(CancellationToken cancellationToken);
+        Task<TeamMember?> GetByIdAsync(TeamMemberId teamMemberId, CancellationToken cancellationToken = default);
+        Task<TeamMember?> GetByEmailAsync(Email email , CancellationToken cancellationToken = default);
+        Task<List<TeamMember>> GetAllAsync(CancellationToken cancellationToken = default);
 
         void Add(TeamMember teamMember);
         void Remove(TeamMember teamMember);
