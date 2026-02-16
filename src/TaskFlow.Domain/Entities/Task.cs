@@ -42,7 +42,7 @@ namespace TaskFlow.Domain.Entities
         public DateTime? UpdatedAt { get; private set; }
 
         // EF Core Constructor
-        public Task() { }
+        private Task() { }
 
         // Domain Constructor
         public Task(string title, Priority priority,ProjectId projectId)

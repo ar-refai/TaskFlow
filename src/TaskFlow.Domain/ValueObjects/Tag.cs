@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskFlow.Domain.ValueObjects
 {
-    public readonly record struct Tag
+    public record Tag
     {
         public string Value { get; init; }
         public Tag(string value)

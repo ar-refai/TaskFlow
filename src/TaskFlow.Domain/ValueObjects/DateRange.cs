@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskFlow.Domain.ValueObjects
 {
-    public readonly record struct DateRange
+    public record DateRange
     {
         public DateTime StartDate { get; init; }
         public DateTime DueDate { get; init; }
