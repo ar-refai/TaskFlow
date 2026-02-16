@@ -19,7 +19,8 @@ namespace TaskFlow.Infrastructure.Persistence.Configurations
             builder.Property(c => c.Id)
                 .HasConversion(
                 id => id.Value,
-                value => new CommentId(value));
+                value => new CommentId(value))
+                .ValueGeneratedNever();
             builder.Property(c => c.TaskId)
                 .HasConversion(
                 id => id.Value,

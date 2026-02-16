@@ -15,12 +15,12 @@ namespace TaskFlow.Infrastructure.Persistence.Configurations
         public void Configure(EntityTypeBuilder<TeamMember> builder)
         {
             builder.ToTable("TeamMembers");
-            builder.HasKey("Id");
+            builder.HasKey(tm => tm.Id);
             builder.Property(tm => tm.Id)
                 .HasConversion(
                 id => id.Value,
                 value => new TeamMemberId(value)
-                );
+                ).ValueGeneratedNever();
             builder.Property(tm => tm.Name)
                 .HasField("_name")
                 .UsePropertyAccessMode(PropertyAccessMode.Field)

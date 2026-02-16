@@ -30,7 +30,7 @@ namespace TaskFlow.Domain.Entities
             if (string.IsNullOrWhiteSpace(name))
                 throw new ArgumentException("Team member name cannot be empty.", nameof(name));
 
-            if (name.Length > 100)
+            if (name.Length > 200)
                 throw new ArgumentException("Team member name cannot exceed 100 characters.", nameof(name));
 
             Id = TeamMemberId.New();

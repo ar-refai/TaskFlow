@@ -20,7 +20,7 @@ namespace TaskFlow.Infrastructure.Persistence.Configurations
                 .HasConversion(
                     id => id.Value,
                     value => new ProjectId(value)
-                );
+                ).ValueGeneratedNever();
             builder.Property(p => p.Name)
                 .HasField("_name")
                 .UsePropertyAccessMode(PropertyAccessMode.Field)
