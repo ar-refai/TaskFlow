@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using TaskFlow.Application.Projects.Commands.CreateProject;
+using TaskFlow.Application.Projects.Queries;
 using TaskFlow.Application.Tasks.Commands.CreateTask;
 using TaskFlow.Application.Tasks.Queries;
 
@@ -16,6 +18,9 @@ namespace TaskFlow.Application
         {
             services.AddScoped<CreateTaskHandler>();
             services.AddScoped<GetTaskByIdHandler>();
+
+            services.AddScoped<CreateProjectHandler>();
+            services.AddScoped<GetProjectByIdHandler>();
             // As you add more handlers, register them here:
             // services.AddScoped<AssignTaskHandler>();
             // services.AddScoped<CompleteTaskHandler>();
