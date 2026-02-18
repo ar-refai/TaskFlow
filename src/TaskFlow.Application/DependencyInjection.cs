@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using TaskFlow.Application.Projects.Commands.CreateProject;
 using TaskFlow.Application.Projects.Queries;
+using TaskFlow.Application.Tasks.Commands.AssignTask;
+using TaskFlow.Application.Tasks.Commands.ChangeTaskStatus;
 using TaskFlow.Application.Tasks.Commands.CreateTask;
 using TaskFlow.Application.Tasks.Queries;
 
@@ -16,14 +18,20 @@ namespace TaskFlow.Application
         // this way is better
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services.AddScoped<CreateTaskHandler>();
-            services.AddScoped<GetTaskByIdHandler>();
-
+            // Project handlers
             services.AddScoped<CreateProjectHandler>();
             services.AddScoped<GetProjectByIdHandler>();
+
+            // Task Handlers
+            services.AddScoped<CreateTaskHandler>();
+            services.AddScoped<GetTaskByIdHandler>();
+            services.AddScoped<ChangeTaskStatusHandler>();
+            services.AddScoped<AssignTaskHandler>()
+
+
+
+
             // As you add more handlers, register them here:
-            // services.AddScoped<AssignTaskHandler>();
-            // services.AddScoped<CompleteTaskHandler>();
             return services;
         }
 

@@ -25,7 +25,7 @@ namespace TaskFlow.Application.Projects.Queries
             var projectId = new ProjectId(query.ProjectId);
             var projectEntity = await _projectRepo.GetByIdAsync(projectId, cancellationToken);
             if (projectEntity == null)
-                return Result.Failure<ProjectResponse>("Task not found");
+                return Result.Failure<ProjectResponse>("Project not found");
             var response = projectEntity.ToResponse();
 
             return Result.Success<ProjectResponse>(response);

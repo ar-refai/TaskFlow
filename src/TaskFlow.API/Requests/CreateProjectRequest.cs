@@ -1,4 +1,4 @@
-﻿namespace TaskFlow.API.Controllers
+﻿namespace TaskFlow.API.Requests
 {
     public class CreateProjectRequest
     {
