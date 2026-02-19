@@ -13,7 +13,7 @@ namespace TaskFlow.Domain.ValueObjects
 
         public DateRange(DateTime startDate, DateTime dueDate)
         {
-            if (dueDate > startDate) throw new ArgumentException("Start date must be before due date.", nameof(startDate));
+            if (dueDate < startDate) throw new ArgumentException("Start date must be before due date.", nameof(startDate));
             StartDate = startDate;
             DueDate = dueDate;
         }

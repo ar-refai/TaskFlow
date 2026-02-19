@@ -11,7 +11,7 @@ namespace TaskFlow.Domain.ValueObjects
         public string Value { get; init; }
         public Tag(string value)
         {
-            if (string.IsNullOrEmpty(Value)) throw new ArgumentException("Tag can't be empty or whitespace.", nameof(value));
+            if (string.IsNullOrEmpty(value)) throw new ArgumentException("Tag can't be empty or whitespace.", nameof(value));
             if (value.Length > 30) throw new ArgumentException("Tag cannot excced 30 characters.", nameof(value));
             Value = value.Trim();
         }

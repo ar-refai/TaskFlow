@@ -86,16 +86,24 @@ namespace TaskFlow.Infrastructure.Persistence.Configurations
             // Tags (many-to-many with value objects)
             builder.OwnsMany(t => t.Tags, tagsBuilder =>
             {
+                //tagsBuilder.ToTable("TaskTags");
+
+                //tagsBuilder.Property<Guid>("TaskEntityId");
+
+                //tagsBuilder.Property(t => t.Value)
+                //    .HasColumnName("TagValue")
+                //    .HasMaxLength(30)
+                //    .IsRequired();
+
+                //tagsBuilder.HasKey("TaskEntityId", "Value");
+
                 tagsBuilder.ToTable("TaskTags");
-
-                tagsBuilder.Property<Guid>("TaskEntityId");
-
+                tagsBuilder.WithOwner().HasForeignKey("TaskId");
                 tagsBuilder.Property(t => t.Value)
                     .HasColumnName("TagValue")
                     .HasMaxLength(30)
                     .IsRequired();
-
-                tagsBuilder.HasKey("TaskEntityId", "Value");
+                tagsBuilder.HasKey("TaskId", "Value");
             });
 
             // Comments (one-to-many)

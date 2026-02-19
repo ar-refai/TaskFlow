@@ -10,7 +10,7 @@ using TaskFlow.Domain.ValueObjects;
 namespace TaskFlow.API.Controllers
 {
     [ApiController]
-    [Route("api/tasks")]
+    [Route("api/")]
     public class TaskController : ControllerBase
     {
         private readonly CreateTaskHandler _createTask;
@@ -60,18 +60,17 @@ namespace TaskFlow.API.Controllers
         [ProducesResponseType(typeof(ProblemDetails),StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetTaskById(Guid id, CancellationToken cancellationToken)
         {
-            var taskId = new TaskId(id);
             var query = new GetTaskByIdQuery
             {
                 TaskId = id
             };
-            var task = await _getTask.Handle(query, cancellationToken);
-            if (task is null) return NotFound(new ProblemDetails
+            var result = await _getTask.Handle(query, cancellationToken);
+            if (result.IsFailure) return NotFound(new ProblemDetails
             {
                 Status = 404,
-                Title = task.Error
+                Title= result.Error
             });
-            return Ok(task.Value);
+            return Ok(result.Value);
         }
 
         [HttpPut("tasks/{id:guid}/assign")]
@@ -85,10 +84,10 @@ namespace TaskFlow.API.Controllers
                 TaskId = id,
                 TeamMemberId = request.TeamMemberId
             };
-           var result = await _assignTask.Handle(command, cancellationToken);
-            if (result.IsFailure) return NotFound(new ProblemDetails
+            var result = await _assignTask.Handle(command, cancellationToken);
+            if (result.IsFailure) return BadRequest(new ProblemDetails
             {
-                Status = 404,
+                Status = 400,
                 Title = result.Error
             });
 
