@@ -36,6 +36,7 @@ namespace TaskFlow.Domain.Entities
             Id = TeamMemberId.New();
             _name = name;
             _email = email;
+            CreatedAt = DateTime.UtcNow;
         }
 
         // Behavioral methods

@@ -195,7 +195,7 @@ namespace TaskFlow.Infrastructure.Migrations
 
                     b.OwnsMany("TaskFlow.Domain.ValueObjects.Tag", "Tags", b1 =>
                         {
-                            b1.Property<Guid>("TaskEntityId")
+                            b1.Property<Guid>("TaskId")
                                 .HasColumnType("uniqueidentifier");
 
                             b1.Property<string>("Value")
@@ -203,12 +203,7 @@ namespace TaskFlow.Infrastructure.Migrations
                                 .HasColumnType("nvarchar(30)")
                                 .HasColumnName("TagValue");
 
-                            b1.Property<Guid>("TaskId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.HasKey("TaskEntityId", "Value");
-
-                            b1.HasIndex("TaskId");
+                            b1.HasKey("TaskId", "Value");
 
                             b1.ToTable("TaskTags", (string)null);
 

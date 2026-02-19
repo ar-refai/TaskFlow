@@ -32,6 +32,7 @@ public class Comment : Entity<CommentId>
         AuthorId = authorId;
         TaskId = taskId;
         _content = content;
+        CreatedAt = DateTime.UtcNow;
     }
     // behavioral methods
     public void EditContent(string newContent)

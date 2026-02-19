@@ -12,8 +12,8 @@ using TaskFlow.Infrastructure.Persistence;
 namespace TaskFlow.Infrastructure.Migrations
 {
     [DbContext(typeof(TaskFlowDbContext))]
-    [Migration("20260216213020_Initial")]
-    partial class Initial
+    [Migration("20260219095919_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -198,7 +198,7 @@ namespace TaskFlow.Infrastructure.Migrations
 
                     b.OwnsMany("TaskFlow.Domain.ValueObjects.Tag", "Tags", b1 =>
                         {
-                            b1.Property<Guid>("TaskEntityId")
+                            b1.Property<Guid>("TaskId")
                                 .HasColumnType("uniqueidentifier");
 
                             b1.Property<string>("Value")
@@ -206,12 +206,7 @@ namespace TaskFlow.Infrastructure.Migrations
                                 .HasColumnType("nvarchar(30)")
                                 .HasColumnName("TagValue");
 
-                            b1.Property<Guid>("TaskId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.HasKey("TaskEntityId", "Value");
-
-                            b1.HasIndex("TaskId");
+                            b1.HasKey("TaskId", "Value");
 
                             b1.ToTable("TaskTags", (string)null);
 

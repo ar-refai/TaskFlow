@@ -55,6 +55,7 @@ namespace TaskFlow.Domain.Entities
             _title = title;
             _priority = priority;
             _taskStatus = TaskStatus.ToDo; // New tasks are always a TODO
+            CreatedAt = DateTime.UtcNow;
         }
 
         // Behavioral methods 

@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using TaskFlow.Application.Projects.Commands.CreateProject;
+using TaskFlow.Application.Projects.Commands.DeleteProject;
+using TaskFlow.Application.Projects.Commands.UpdateProject;
 using TaskFlow.Application.Projects.Queries;
 using TaskFlow.Application.Tasks.Commands.AssignTask;
 using TaskFlow.Application.Tasks.Commands.ChangeTaskStatus;
@@ -21,8 +23,11 @@ namespace TaskFlow.Application
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             // Project handlers
-            services.AddScoped<CreateProjectHandler>();
+            services.AddScoped<GetAllProjectsHandler>();
             services.AddScoped<GetProjectByIdHandler>();
+            services.AddScoped<CreateProjectHandler>();
+            services.AddScoped<UpdateProjectHandler>();
+            services.AddScoped<DeleteProjectHandler>();
 
             // Task Handlers
             services.AddScoped<CreateTaskHandler>();

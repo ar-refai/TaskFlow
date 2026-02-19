@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TaskFlow.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -93,12 +93,11 @@ namespace TaskFlow.Infrastructure.Migrations
                 columns: table => new
                 {
                     TagValue = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    TaskEntityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     TaskId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TaskTags", x => new { x.TaskEntityId, x.TagValue });
+                    table.PrimaryKey("PK_TaskTags", x => new { x.TaskId, x.TagValue });
                     table.ForeignKey(
                         name: "FK_TaskTags_Tasks_TaskId",
                         column: x => x.TaskId,
@@ -141,11 +140,6 @@ namespace TaskFlow.Infrastructure.Migrations
                 name: "IX_Tasks_TaskStatus",
                 table: "Tasks",
                 column: "TaskStatus");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TaskTags_TaskId",
-                table: "TaskTags",
-                column: "TaskId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TeamMembers_Email",

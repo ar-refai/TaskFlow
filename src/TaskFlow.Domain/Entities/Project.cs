@@ -33,6 +33,7 @@ namespace TaskFlow.Domain.Entities
             Id = ProjectId.New();
             _name = name;
             _description = description;
+            CreatedAt = DateTime.UtcNow;
         }
 
         // Behavioral methods
