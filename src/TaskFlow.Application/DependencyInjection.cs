@@ -20,6 +20,10 @@ using TaskFlow.Application.Tasks.Queries.GetTaskById;
 using TaskFlow.Application.Tasks.Queries.GetTasksByProject;
 using TaskFlow.Application.Tasks.Queries.GetTasksWithFilters;
 using TaskFlow.Application.TeamMembers.Commands.CreateTeamMember;
+using TaskFlow.Application.TeamMembers.Commands.DeleteTeamMember;
+using TaskFlow.Application.TeamMembers.Commands.UpdateTeamMember;
+using TaskFlow.Application.TeamMembers.Queries.GetAllTeamMembers;
+using TaskFlow.Application.TeamMembers.Queries.GetAllTeamMemberTasks;
 using TaskFlow.Application.TeamMembers.Queries.GetTeamMemberById;
 
 namespace TaskFlow.Application
@@ -30,16 +34,20 @@ namespace TaskFlow.Application
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             // Project Handlers
+            // - Queries
             services.AddScoped<GetAllProjectsHandler>();
             services.AddScoped<GetProjectByIdHandler>();
+            // - Commands
             services.AddScoped<CreateProjectHandler>();
             services.AddScoped<UpdateProjectHandler>();
             services.AddScoped<DeleteProjectHandler>();
 
             // Task Handlers
+            // - Queries
             services.AddScoped<GetTaskByIdHandler>();
             services.AddScoped<GetTasksByProjectHandler>();
             services.AddScoped<GetTasksWithFiltersHandler>();
+            // - Commands
             services.AddScoped<ChangeTaskStatusHandler>();
             services.AddScoped<AssignTaskHandler>();
             services.AddScoped<AddRemoveTagsInTaskHandler>();
@@ -49,8 +57,14 @@ namespace TaskFlow.Application
             services.AddScoped<DeleteTaskHandler>();
 
             // Team Members Handlers
-            services.AddScoped<CreateTeamMemberHandler>();
+            // - Queries
+            services.AddScoped<GetAllTeamMembersHandler>();
+            services.AddScoped<GetAllTeamMemberTasksHandler>();
             services.AddScoped<GetTeamMemberByIdHandler>();
+            // - Commands
+            services.AddScoped<CreateTeamMemberHandler>();
+            services.AddScoped<UpdateTeamMemberHandler>();
+            services.AddScoped<DeleteTeamMemberHandler>();
 
             // As you add more handlers, register them here:
             return services;

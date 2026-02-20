@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using TaskFlow.Domain.Entities;
 using TaskFlow.Domain.Repositories;
 using TaskFlow.Domain.ValueObjects;
+using TaskEntity = TaskFlow.Domain.Entities.Task;
 
 namespace TaskFlow.Infrastructure.Persistence.Repositories
 {
@@ -21,6 +22,11 @@ namespace TaskFlow.Infrastructure.Persistence.Repositories
         public async Task<List<TeamMember>> GetAllAsync(CancellationToken cancellationToken = default)
         {
             return await _context.TeamMembers.AsNoTracking().OrderByDescending(t => t.Name).ToListAsync(cancellationToken);   
+        }
+
+        public async Task<List<TaskEntity>> GetAllTeamMemberTasks (TeamMemberId teamMemberId, CancellationToken cancellationToken =default)
+        {
+            return await _context.Tasks.AsNoTracking().OrderByDescending(t => t.CreatedAt).Where(t => t.AssignedTo == teamMemberId).ToListAsync(cancellationToken);
         }
 
         public async Task<TeamMember?> GetByEmailAsync(Email email, CancellationToken cancellationToken = default)
