@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TaskFlow.Domain.Repositories;
+using TaskFlow.Domain.Repositories.Filters;
 using TaskFlow.Domain.ValueObjects;
+using Status = TaskFlow.Domain.ValueObjects.TaskStatus;
+
 
 namespace TaskFlow.Infrastructure.Persistence.Repositories
 {
@@ -16,6 +18,31 @@ namespace TaskFlow.Infrastructure.Persistence.Repositories
         public TaskRepository(TaskFlowDbContext context)
         {
             _context = context;
+        }
+
+        public async Task<List<Domain.Entities.Task>> GetWithFiltersAsync(TaskFilters filters, CancellationToken cancellationToken)
+        {
+            var query = _context.Tasks.Include(t => t.Comments).AsNoTracking();
+
+            if(!string.IsNullOrEmpty(filters.Status))
+            { 
+                Enum.TryParse<Status>(filters.Status, true, out var status);
+                query.Where(t => t.TaskStatus == status);
+            }
+            
+            if(!string.IsNullOrEmpty(filters.Priority))
+            {
+                Enum.TryParse<Priority>(filters.Priority, true, out var priority);
+                query.Where(t => t.Priority == priority);
+            }
+            
+            if(filters.AssigneeId.HasValue)
+            { 
+                var assigneeId = new TeamMemberId(filters.AssigneeId.Value);
+                query.Where(t => t.AssignedTo == assigneeId);
+            }
+
+            return await query.OrderByDescending(t => t.CreatedAt).ToListAsync(cancellationToken);
         }
 
         public async Task<Domain.Entities.Task?> GetByIdAsync(TaskId taskId, CancellationToken cancellationToken = default)

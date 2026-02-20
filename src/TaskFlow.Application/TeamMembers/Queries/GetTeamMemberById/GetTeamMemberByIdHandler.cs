@@ -9,7 +9,7 @@ using TaskFlow.Application.TeamMembers.Commands.CreateTeamMember;
 using TaskFlow.Domain.Repositories;
 using TaskFlow.Domain.ValueObjects;
 
-namespace TaskFlow.Application.TeamMembers.Queries
+namespace TaskFlow.Application.TeamMembers.Queries.GetTeamMemberById
 {
     public class GetTeamMemberByIdHandler : IQueryHandler<GetTeamMemberByIdQuery, TeamMemberResponse>
     {
@@ -30,7 +30,7 @@ namespace TaskFlow.Application.TeamMembers.Queries
 
             var result = teamMember.ToResponse();
 
-            return Result.Success<TeamMemberResponse>(result);
+            return Result.Success(result);
         }
     }
 }

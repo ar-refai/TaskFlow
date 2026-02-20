@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using TaskFlow.Application.Abstractions;
 using TaskFlow.Application.Projects.Commands.CreateProject;
+using TaskFlow.Application.Tasks.Commands.CreateTask;
 
-namespace TaskFlow.Application.Projects.Queries
+namespace TaskFlow.Application.Tasks.Queries.GetTasksByProject
 {
-    public class GetAllProjectsQuery : IQuery<List<ProjectResponse>>
+    public class GetTasksByProjectQuery : IQuery<List<TaskResponse>>
     {
-        // no parameters needed : returns all projects
+        public Guid ProjectId { get; init; }
     }
 }

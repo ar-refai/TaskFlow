@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TaskFlow.API.Requests;
+using TaskFlow.API.Requests.TeamMembers;
 using TaskFlow.Application.TeamMembers.Commands.CreateTeamMember;
 using TaskFlow.Application.TeamMembers.Queries;
+using TaskFlow.Application.TeamMembers.Queries.GetTeamMemberById;
 
 namespace TaskFlow.API.Controllers
 {

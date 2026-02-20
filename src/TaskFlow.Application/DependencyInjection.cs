@@ -7,13 +7,20 @@ using Microsoft.Extensions.DependencyInjection;
 using TaskFlow.Application.Projects.Commands.CreateProject;
 using TaskFlow.Application.Projects.Commands.DeleteProject;
 using TaskFlow.Application.Projects.Commands.UpdateProject;
-using TaskFlow.Application.Projects.Queries;
+using TaskFlow.Application.Projects.Queries.GetAllProjects;
+using TaskFlow.Application.Projects.Queries.GetProjectById;
+using TaskFlow.Application.Tasks.Commands.AddCommentToTask;
+using TaskFlow.Application.Tasks.Commands.AddRemoveTagsInTask;
 using TaskFlow.Application.Tasks.Commands.AssignTask;
 using TaskFlow.Application.Tasks.Commands.ChangeTaskStatus;
 using TaskFlow.Application.Tasks.Commands.CreateTask;
-using TaskFlow.Application.Tasks.Queries;
+using TaskFlow.Application.Tasks.Commands.DeleteTask;
+using TaskFlow.Application.Tasks.Commands.UpdateTask;
+using TaskFlow.Application.Tasks.Queries.GetTaskById;
+using TaskFlow.Application.Tasks.Queries.GetTasksByProject;
+using TaskFlow.Application.Tasks.Queries.GetTasksWithFilters;
 using TaskFlow.Application.TeamMembers.Commands.CreateTeamMember;
-using TaskFlow.Application.TeamMembers.Queries;
+using TaskFlow.Application.TeamMembers.Queries.GetTeamMemberById;
 
 namespace TaskFlow.Application
 {
@@ -22,7 +29,7 @@ namespace TaskFlow.Application
         //this way is better
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            // Project handlers
+            // Project Handlers
             services.AddScoped<GetAllProjectsHandler>();
             services.AddScoped<GetProjectByIdHandler>();
             services.AddScoped<CreateProjectHandler>();
@@ -30,12 +37,18 @@ namespace TaskFlow.Application
             services.AddScoped<DeleteProjectHandler>();
 
             // Task Handlers
-            services.AddScoped<CreateTaskHandler>();
             services.AddScoped<GetTaskByIdHandler>();
+            services.AddScoped<GetTasksByProjectHandler>();
+            services.AddScoped<GetTasksWithFiltersHandler>();
             services.AddScoped<ChangeTaskStatusHandler>();
             services.AddScoped<AssignTaskHandler>();
+            services.AddScoped<AddRemoveTagsInTaskHandler>();
+            services.AddScoped<AddCommentToTaskHandler>();
+            services.AddScoped<CreateTaskHandler>();
+            services.AddScoped<UpdateTaskHandler>();
+            services.AddScoped<DeleteTaskHandler>();
 
-            // Team Members 
+            // Team Members Handlers
             services.AddScoped<CreateTeamMemberHandler>();
             services.AddScoped<GetTeamMemberByIdHandler>();
 

@@ -10,7 +10,7 @@ using TaskFlow.Application.Tasks.Commands.CreateTask;
 using TaskFlow.Domain.Repositories;
 using TaskFlow.Domain.ValueObjects;
 
-namespace TaskFlow.Application.Tasks.Queries
+namespace TaskFlow.Application.Tasks.Queries.GetTaskById
 {
     public class GetTaskByIdHandler : IQueryHandler<GetTaskByIdQuery, TaskResponse>
     {
@@ -24,10 +24,10 @@ namespace TaskFlow.Application.Tasks.Queries
             var taskId = new TaskId(query.TaskId);
             var task = await _taskRepo.GetByIdAsync(taskId, cancellationToken);
             if (task == null)
-                return Result<TaskResponse>.Failure<TaskResponse>("Task not found.");
+                return Result.Failure<TaskResponse>("Task not found.");
             var response = task.ToResponse();
           
-            return Result<TaskResponse>.Success(response);
+            return Result.Success(response);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace TaskFlow.API.Requests
+﻿namespace TaskFlow.API.Requests.Tasks
 {
     public class AssignTaskRequest
     {

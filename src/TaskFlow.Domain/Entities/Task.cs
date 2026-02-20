@@ -133,10 +133,16 @@ namespace TaskFlow.Domain.Entities
 
         public void RemoveTag(Tag tag) { _tags.Remove(tag); }
 
-        public void AddComment(Comment comment)
+        public void ClearTags()
+        {
+            _tags.Clear();
+        }
+
+        public void AddComment(string content, TeamMemberId memberId, TaskId taskId)
         {
             if (_taskStatus == TaskStatus.Done || _taskStatus == TaskStatus.Cancelled)
                 throw new InvalidOperationException("Cannot add comments to completed or cancelled tasks");
+            var comment = new Comment(content,memberId,taskId);
             _comments.Add(comment);
         }
     }

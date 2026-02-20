@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TaskFlow.Application.Abstractions;
 using TaskFlow.Application.Tasks.Commands.CreateTask;
 
-namespace TaskFlow.Application.Tasks.Queries
+namespace TaskFlow.Application.Tasks.Queries.GetTaskById
 {
     public class GetTaskByIdQuery : IQuery<TaskResponse>
     {

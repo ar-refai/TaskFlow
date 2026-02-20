@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TaskFlow.Application.Abstractions;
 using TaskFlow.Application.TeamMembers.Commands.CreateTeamMember;
 
-namespace TaskFlow.Application.TeamMembers.Queries
+namespace TaskFlow.Application.TeamMembers.Queries.GetTeamMemberById
 {
     public class GetTeamMemberByIdQuery : IQuery<TeamMemberResponse>
     {

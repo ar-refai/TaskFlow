@@ -8,7 +8,7 @@ using TaskFlow.Application.Common;
 using TaskFlow.Application.Projects.Commands.CreateProject;
 using TaskFlow.Domain.Repositories;
 
-namespace TaskFlow.Application.Projects.Queries
+namespace TaskFlow.Application.Projects.Queries.GetAllProjects
 {
     public class GetAllProjectsHandler : IQueryHandler<GetAllProjectsQuery, List<ProjectResponse>>
     {
@@ -22,7 +22,7 @@ namespace TaskFlow.Application.Projects.Queries
         { 
             var entities = await _repo.GetAllAsync(cancellationToken);
             List<ProjectResponse> result = entities.Select(e => e.ToResponse()).ToList();
-            return Result<List<ProjectResponse>>.Success(result);
+            return Result.Success(result);
         }
     }
 }

@@ -10,7 +10,7 @@ using TaskFlow.Domain.Entities;
 using TaskFlow.Domain.Repositories;
 using TaskFlow.Domain.ValueObjects;
 
-namespace TaskFlow.Application.Projects.Queries
+namespace TaskFlow.Application.Projects.Queries.GetProjectById
 {
     public class GetProjectByIdHandler : IQueryHandler<GetProjectByIdQuery, ProjectResponse>
     {
@@ -28,7 +28,7 @@ namespace TaskFlow.Application.Projects.Queries
                 return Result.Failure<ProjectResponse>("Project not found");
             var response = projectEntity.ToResponse();
 
-            return Result.Success<ProjectResponse>(response);
+            return Result.Success(response);
         }
     }
 }

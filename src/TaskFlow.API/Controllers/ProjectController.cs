@@ -4,6 +4,8 @@ using TaskFlow.Application.Projects.Commands.CreateProject;
 using TaskFlow.Application.Projects.Commands.DeleteProject;
 using TaskFlow.Application.Projects.Commands.UpdateProject;
 using TaskFlow.Application.Projects.Queries;
+using TaskFlow.Application.Projects.Queries.GetAllProjects;
+using TaskFlow.Application.Projects.Queries.GetProjectById;
 using TaskFlow.Domain.ValueObjects;
 
 namespace TaskFlow.API.Controllers
