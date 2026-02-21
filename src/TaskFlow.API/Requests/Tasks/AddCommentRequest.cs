@@ -3,6 +3,6 @@
     public class AddCommentRequest
     {
         public Guid AuthorId { get; init; }
-        public string Content { get; init; }
+        public string Content { get; init; } = string.Empty;
     }
 }

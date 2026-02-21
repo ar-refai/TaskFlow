@@ -50,6 +50,8 @@ namespace TaskFlow.API.Controllers
             _getTask = getTask;
             _changeStatus = changeStatus;
             _assignTask = assignTask;
+            _addCommentToTask = addCommentToTask;
+            _addRemoveTagsInTask = addRemoveTagsInTask;
             _createTask = createTask;
             _updateTask = updateTask;
             _deleteTask = deleteTask;

@@ -22,7 +22,7 @@ namespace TaskFlow.Infrastructure.Persistence
         public DbSet<TeamMember> TeamMembers => Set<TeamMember>();
         public DbSet<Comment> Comments => Set<Comment>();
 
-        public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        public async override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         => await base.SaveChangesAsync(cancellationToken);
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
