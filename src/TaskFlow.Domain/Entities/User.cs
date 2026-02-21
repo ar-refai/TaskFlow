@@ -14,7 +14,7 @@ namespace TaskFlow.Domain.Entities
         private UserRole _role;
 
         public override UserId Id { get; protected set; }
-        public Email Emial => _email;
+        public Email Email => _email;
         public string PasswordHash => _passwordHash;
         public UserRole Role => _role;
 

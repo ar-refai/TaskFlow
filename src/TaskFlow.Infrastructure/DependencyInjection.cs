@@ -11,6 +11,7 @@ using TaskFlow.Domain.Repositories;
 using TaskFlow.Infrastructure.Persistence;
 using TaskFlow.Infrastructure.Persistence.Interceptors;
 using TaskFlow.Infrastructure.Persistence.Repositories;
+using TaskFlow.Infrastructure.Security;
 
 namespace TaskFlow.Infrastructure
 {
@@ -64,6 +65,8 @@ namespace TaskFlow.Infrastructure
             services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<ITeamMemberRepository, TeamMemberRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IPasswordHasher, PasswordHasher>();
 
             return services;
         }
